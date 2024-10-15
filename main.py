@@ -14,11 +14,18 @@ QUESTION: str = (
     "Please give me a list with the name Nobel Prize winners in physics from 2020 to 2024 and a maximum one sentence description of their contribution."
 )
 
+
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="RAG example script")
-    parser.add_argument('--rag', type=str, choices=['true', 'false'], default='false',
-                        help='Enable or disable RAG (default: false)')
+    parser.add_argument(
+        "--rag",
+        type=str,
+        choices=["true", "false"],
+        default="false",
+        help="Enable or disable RAG (default: false)",
+    )
     return parser.parse_args()
+
 
 def fetch_context(url: str) -> str:
     """
@@ -137,7 +144,7 @@ def main(
     model: str = LLM_MODEL,
     url: str = AUGMENTATION_URL,
     question: str = QUESTION,
-    use_rag: bool = False
+    use_rag: bool = False,
 ) -> str:
     """
     Orchestrates the process of fetching context, building a prompt, initializing a language model,
@@ -165,5 +172,5 @@ def main(
 
 if __name__ == "__main__":
     args = parse_arguments()
-    use_rag = args.rag.lower() == 'true'
+    use_rag = args.rag.lower() == "true"
     print(main(use_rag=use_rag))
