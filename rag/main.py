@@ -8,7 +8,7 @@ from pydantic import SecretStr
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
-LLM_MODEL: str = "gpt-4o-mini-2024-07-18"
+OPENAI_MODEL: str = "gpt-4o-mini-2024-07-18"
 AUGMENTATION_URL: str = "https://www.nobelprize.org/prizes/physics/2024/press-release/"
 QUESTION: str = (
     "Please give me a list with the name Nobel Prize winners in physics from 2020 to 2024 and a maximum one sentence description of their contribution. If there are multiple Nobel Prize winners in the same year, mentioned them in the same sentence."
@@ -141,7 +141,7 @@ def get_api_key() -> SecretStr:
 
 
 def main(
-    model: str = LLM_MODEL,
+    model: str = OPENAI_MODEL,
     url: str = AUGMENTATION_URL,
     question: str = QUESTION,
     use_rag: bool = False,
