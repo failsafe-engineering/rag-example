@@ -11,7 +11,7 @@ from langchain_core.prompts import ChatPromptTemplate
 LLM_MODEL: str = "gpt-4o-mini-2024-07-18"
 AUGMENTATION_URL: str = "https://www.nobelprize.org/prizes/physics/2024/press-release/"
 QUESTION: str = (
-    "Please give me a list with the name Nobel Prize winners in physics from 2020 to 2024 and a maximum one sentence description of their contribution."
+    "Please give me a list with the name Nobel Prize winners in physics from 2020 to 2024 and a maximum one sentence description of their contribution. If there are multiple Nobel Prize winners in the same year, mentioned them in the same sentence."
 )
 
 
@@ -166,11 +166,14 @@ def main(
     context: str = fetch_context(url) if use_rag else ""
     prompt: ChatPromptTemplate = build_prompt()
     llm: ChatOpenAI = initialise_llm(model, api_key)
-    result: Any = build_and_invoke_chain(prompt, llm, context, question)
-    return vars(result)["content"]
+    response: Any = build_and_invoke_chain(prompt, llm, context, question)
+    return vars(response)["content"]
 
 
 if __name__ == "__main__":
     args = parse_arguments()
     use_rag = args.rag.lower() == "true"
-    print(main(use_rag=use_rag))
+    print(f"Question:\n{QUESTION}", end="\n\n")
+    result = main(use_rag=use_rag)
+    result = result.strip().replace("\n\n", "\n")
+    print(f"Answer:\n{result}", end="\n\n")
