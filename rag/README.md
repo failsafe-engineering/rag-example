@@ -5,6 +5,11 @@ This allows the model to answer questions or generate text that is more accurate
 
 This script asks an OpenAI LLM for the list of winners of the Nobel Prize in physics from 2020 to 2024. Since the LLM was trained before the announcement in 2024 it can only tell the winners from 2020 to 2023. However with RAG we can extend the training of the LLM seamlessly.
 
+## Python Version
+```shell
+>=3.12
+```
+
 ## Setup Local Env
 ```shell
 python -m venv .venv
@@ -21,12 +26,12 @@ The script talks to the OpenAI API. A project and API key are needed.
 export OPENAI_API_KEY=<your-api-key>
 ```
 
-## Run script without RAG
+## Run Script without RAG
 ```shell
 python main.py
 ```
 
-## Run script with RAG
+## Run Script with RAG
 ```shell
 python main.py --rag true
 ```
