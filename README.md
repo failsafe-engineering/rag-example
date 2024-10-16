@@ -1,2 +1,4 @@
-# rag-example
-An example how to use Retrieval Augmented Generation prompting LLMs.
+# Patterns in engineering around Generative AI
+Various patterns and techniques around engineering Generative AI
+
+- [**Retrieval Augmented Generation (RAG)**](./rag/README.md)
